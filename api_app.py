@@ -8,22 +8,23 @@ import json
 country = input('Enter country(ISO 3166-2 format): ')
 # Enter the year for which you want the holidays be displayed
 year = input('Enter Year: ')
+# Enter the month for which you want the holidays displayed.
+
+month = input('Enter month(1 or 2 digit month(1-12)): ')
+
 api_key = '370b4375-19ea-4f7e-9159-b080786fe326'
 
-get_holidays_request = requests.get('https://holidayapi.com/v1/holidays?key='+api_key+'&country='+country+'&year='+year)
+get_holidays_request = requests.get('https://holidayapi.com/v1/holidays?key='+api_key+'&country='+country+'&year='+year+'&month='+month)
 
 if(get_holidays_request.status_code==200):
 
-	holidays_info = get_holidays_request.json()
+  holidays_info = get_holidays_request.json()
 
-	result = json.dumps(holidays_info)
+  result = json.dumps(holidays_info)
 
-	result1 = json.loads(result)
+  result1 = json.loads(result)
 
-	print(result1)
+  print(result1)
 
 else:
-	print("not acceptable country")
-
-
-	
+  print("not acceptable country")
