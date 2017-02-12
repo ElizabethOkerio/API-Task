@@ -20,11 +20,14 @@ if(get_holidays_request.status_code==200):
 
   holidays_info = get_holidays_request.json()
 
-  result = json.dumps(holidays_info)
+  if holidays_info['holidays']:
 
-  result1 = json.loads(result)
+  	for holiday in holidays_info['holidays']:
 
-  print(result1)
+  		print("Date: {}, Name:{}".format(holiday['date'],holiday['name']))
+  else:
+
+  	print("No holidays found.")
 
 else:
   print("not acceptable country")
